@@ -1,0 +1,121 @@
+package General;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.WindowConstants;
+
+public class Main {
+
+	static JFrame windowPrincipal = new JFrame("PaperBoy");
+	static JFrame windowCliente;
+	
+public static void main(String[] args) 
+{
+	//Ventana Principal
+	windowPrincipal.setSize(275,680);
+	windowPrincipal.setLayout(null);
+	
+	//Botones
+	JButton bCliente = Boton("Clientes",50,50,150,50,windowPrincipal);
+	JButton bMercaderias = Boton("Mercaderias",50,150,150,50,windowPrincipal);
+	JButton bVentas = Boton("Ventas",50,250,150,50,windowPrincipal);
+	JButton bPedidos = Boton("Pedidos",50,350,150,50,windowPrincipal);
+	JButton bPagos = Boton("Pagos",50,450,150,50,windowPrincipal);
+	JButton bCobros = Boton("Cobros",50,550,150,50,windowPrincipal);
+	
+	//Ventana Cliente
+	bCliente.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			windowPrincipal.setVisible(false);
+			WCliente();
+	}});
+	
+
+	// Mostrar la ventana principal
+	windowPrincipal.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+	windowPrincipal.setVisible(true);
+	
+}
+
+public static JButton Boton (String nombre, int x, int y, int ancho, int alto, JFrame window)
+{
+	JButton button = new JButton(nombre);
+	button.setBounds(new Rectangle(x, y, ancho, alto));
+	window.getContentPane().add(button);
+	return button;
+}
+
+public static JLabel Label (String nombre, int x, int y, int ancho, int alto, JDialog dialog)
+{
+	JLabel label = new JLabel(nombre);
+    label.setBounds(x, y, ancho, alto);
+    dialog.add(label);
+	return label;
+}
+
+public static JTextField TextField (int x, int y, int ancho, int alto, JDialog dialog)
+{
+	JTextField text = new JTextField();
+    text.setBounds(x, y, ancho, alto);
+    dialog.add(text);
+	return text;
+}
+
+public static void WCliente()
+{
+	windowCliente = new JFrame("Gestionar Clientes");
+	windowCliente.setSize(275,500);
+	windowCliente.setLayout(null);
+	windowCliente.setVisible(true);
+	JButton bClienteAgregar = Boton("Agregar Cliente",50,50,150,50,windowCliente);
+	JButton bClienteBuscar = Boton("Buscar Cliente",50,150,150,50,windowCliente);
+	JButton bClienteModificar = Boton("Modificar Cliente",50,250,150,50,windowCliente);
+	JButton bClienteEliminar = Boton("Eliminar Cliente",50,350,150,50,windowCliente);
+	
+	//Agregar Cliente
+		bClienteAgregar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				WAgregarCliente();
+		}});
+	
+	// Hacer que al cerrarse la secundaria con la x de arriba a la derecha, se muestre la primaria
+	windowCliente.addWindowListener(new WindowAdapter() {
+		public void windowClosing(WindowEvent e) {
+			windowPrincipal.setVisible(true);
+			windowCliente.setVisible(false);
+		}
+	
+		public void windowClosed(WindowEvent e) {
+			windowPrincipal.setVisible(true);
+			windowCliente.setVisible(false);
+		}
+	});	
+}
+
+public static int WAgregarCliente()
+{
+	JDialog windowAgregarCliente = new JDialog(windowCliente,"Agregar Cliente");
+	windowAgregarCliente.setSize(500,350);
+	windowAgregarCliente.setLayout(null);
+	windowAgregarCliente.setVisible(true);
+	
+	JLabel labelNombre = Label("Nombre:",50,30,100,30,windowAgregarCliente);
+	JLabel labelApellido = Label("Apellido:",50,100,100,30,windowAgregarCliente);
+	JLabel labelDireccion = Label("Direccion:",50,170,100,30,windowAgregarCliente);
+	JLabel labelTelefono = Label("Telefono:",50,240,100,30,windowAgregarCliente);
+	
+	JTextField nombre = TextField(150,30,200,30,windowAgregarCliente);
+    
+	
+	return 1;
+}
+
+}

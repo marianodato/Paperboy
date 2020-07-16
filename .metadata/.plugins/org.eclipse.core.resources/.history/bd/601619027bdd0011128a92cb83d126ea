@@ -1,0 +1,32 @@
+package GestionarCliente;
+
+import java.sql.DriverManager;
+
+import Clases.Cliente;
+import General.BaseDatos;
+
+public class AgregarCliente extends BaseDatos 
+{
+	private Cliente cliente;
+	
+	public AgregarCliente(Cliente cliente)
+	{				
+			super();
+			try {
+			// Creo una nueva instancia de driver
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			// Obtengo la conexión
+			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1/phpmyadmin?user=root&password=root");
+			// Instanción la instrucción
+			stmt = conn.createStatement();
+			// Cargo un set de resultados ejecutando la instrucción
+			rs = stmt.executeQuery("INSERT INTO Cliente VALUES Nnivel=");
+			
+			// Cuando terminé, siempre cierro la conexión
+			conn.close();
+		
+		}
+			
+	}
+
+}

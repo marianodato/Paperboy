@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.awt.Rectangle"/>
+<fullyQualifiedTypeName name="javax.swing.JTextField"/>
+<fullyQualifiedTypeName name="Clases.Cliente"/>
+<fullyQualifiedTypeName name="java.sql.DriverManager"/>
+<fullyQualifiedTypeName name="java.sql.SQLException"/>
+<fullyQualifiedTypeName name="GestionarCliente.AgregarCliente"/>
+<fullyQualifiedTypeName name="GestionarCliente.ModificarCliente"/>
+<fullyQualifiedTypeName name="Clases.Mercaderia"/>
+<fullyQualifiedTypeName name="java.io.IOException"/>
+<fullyQualifiedTypeName name="General.BaseDatos"/>
+<fullyQualifiedTypeName name="Clases.Cobro"/>
+<fullyQualifiedTypeName name="Clases.Pago"/>
+<fullyQualifiedTypeName name="java.awt.print.Printable"/>
+<fullyQualifiedTypeName name="java.awt.print.PrinterJob"/>
+<fullyQualifiedTypeName name="Clases.Impresora"/>
+<fullyQualifiedTypeName name="java.awt.print.PrinterException"/>
+<fullyQualifiedTypeName name="java.awt.Graphics"/>
+<fullyQualifiedTypeName name="java.awt.print.PageFormat"/>
+<fullyQualifiedTypeName name="Clases.Venta"/>
+<fullyQualifiedTypeName name="java.util.Vector"/>
+<fullyQualifiedTypeName name="Clases.Pedido"/>
+<fullyQualifiedTypeName name="java.net.ConnectException"/>
+<fullyQualifiedTypeName name="java.io.PrintWriter"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="java.io.FileReader"/>
+<fullyQualifiedTypeName name="java.io.BufferedReader"/>
+<fullyQualifiedTypeName name="Gestion.GestionarClientes"/>
+<fullyQualifiedTypeName name="java.io.BufferedWriter"/>
+<fullyQualifiedTypeName name="java.io.FileWriter"/>
+<fullyQualifiedTypeName name="Gestion.GestionarMercaderias"/>
+<fullyQualifiedTypeName name="Gestion.GestionarPedidos"/>
+<fullyQualifiedTypeName name="java.sql.Date"/>
+<fullyQualifiedTypeName name="Gestion.GestionarVentas"/>
+<fullyQualifiedTypeName name="General.Main"/>
+<fullyQualifiedTypeName name="Gestion.GestionarCaja"/>
+</qualifiedTypeNameHistroy>

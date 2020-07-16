@@ -1,0 +1,38 @@
+package GestionarCliente;
+
+import java.sql.DriverManager;
+
+import Clases.Cliente;
+import General.BaseDatos;
+
+public class AgregarCliente extends BaseDatos 
+{
+	private Cliente cliente;
+	
+	public AgregarCliente(Cliente cliente)
+	{				
+			super();
+			try {
+			// Creo una nueva instancia de driver
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			// Obtengo la conexión
+			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1/phpmyadmin?user=root&password=root");
+			// Instanción la instrucción
+			stmt = conn.createStatement();
+			// Cargo un set de resultados ejecutando la instrucción
+			rs = stmt.executeQuery("SELECT * FROM Jesus WHERE Nnivel="+id);
+
+			// Mientras pueda recorrer la tabla
+			while (rs.next())
+			{
+				j = new Jesus(new Punto(rs.getInt("posx"),rs.getInt("posy")-5),20,40,150,p.height-hell,vplat,p);
+			}
+			
+			// Cuando terminé, siempre cierro la conexión
+			conn.close();
+		
+		}
+			
+	}
+
+}

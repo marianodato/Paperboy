@@ -1,0 +1,45 @@
+package GestionarCliente;
+
+import Clases.Cliente;
+
+public class AgregarCliente 
+{
+	private Cliente cliente;
+	
+	public AgregarCliente(Cliente cliente)
+	{
+		
+				
+			public static Jesus CargarJesus(int id,float hell,Vector<Plataforma>vplat,PApplet p) throws InstantiationException, IllegalAccessException, ClassNotFoundException
+			{
+				Jesus j = null;
+				try {
+					// Creo una nueva instancia de driver
+					Class.forName("com.mysql.jdbc.Driver").newInstance();
+					// Obtengo la conexión
+					conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1/phpmyadmin?user=root&password=root");
+					// Instanción la instrucción
+					stmt = conn.createStatement();
+					// Cargo un set de resultados ejecutando la instrucción
+					rs = stmt.executeQuery("SELECT * FROM Jesus WHERE Nnivel="+id);
+
+					// Mientras pueda recorrer la tabla
+					while (rs.next())
+					{
+						j = new Jesus(new Punto(rs.getInt("posx"),rs.getInt("posy")-5),20,40,150,p.height-hell,vplat,p);
+					}
+					
+					// Cuando terminé, siempre cierro la conexión
+					conn.close();
+					
+				}
+				catch (SQLException ex)
+				{
+					return null;
+				}
+				return j;
+			}
+			
+	}
+
+}

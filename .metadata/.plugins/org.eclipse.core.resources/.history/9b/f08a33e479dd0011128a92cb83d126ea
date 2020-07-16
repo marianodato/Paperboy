@@ -1,0 +1,14 @@
+package GestionarCliente;
+
+import Clases.Cliente;
+
+public class AgregarCliente 
+{
+	private Cliente cliente;
+	
+	public AgregarCliente(Cliente cliente)
+	{
+		
+	}
+
+}

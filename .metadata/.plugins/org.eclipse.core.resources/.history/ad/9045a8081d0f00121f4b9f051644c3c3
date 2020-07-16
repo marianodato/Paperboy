@@ -1,0 +1,165 @@
+package General;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import java.util.Vector;
+
+import Clases.Cliente;
+import Clases.Cobro;
+import Clases.Mercaderia;
+import Clases.Pago;
+import Clases.Venta;
+
+import com.mysql.jdbc.*;
+
+public class BaseDatos 
+{
+	protected static Connection conn;
+	protected static Statement stmt;
+	protected static ResultSet rs;
+	
+	public void BaseDatos()
+	{
+		// Creo una conexion
+		Connection conn = null;
+		// Creo una instruccion
+		Statement stmt = null;
+		// Creo un set de resultados
+		ResultSet rs = null;
+	}
+	
+	public static void NonQuery(String text) throws InstantiationException, IllegalAccessException, ClassNotFoundException
+	{
+		try{
+		// Creo una nueva instancia de driver
+		Class.forName("com.mysql.jdbc.Driver").newInstance();
+		// Obtengo la conexión
+		conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/phpmyadmin?user=root");
+		// Instanción la instrucción
+		stmt = conn.createStatement();	
+		// Cargo un set de resultados ejecutando la instrucción
+		stmt.execute(text);
+		// Cuando terminé, siempre cierro la conexión
+		conn.close();
+		}
+		catch(SQLException e1){System.out.println(e1);}
+	}
+	public static Vector<Cliente> ClienteQuery(String text) throws InstantiationException, IllegalAccessException, ClassNotFoundException
+	{
+		try {
+		Vector<Cliente> cliente = new Vector<Cliente>();
+		// Creo una nueva instancia de driver
+		Class.forName("com.mysql.jdbc.Driver").newInstance();
+		// Obtengo la conexión
+		conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1/phpmyadmin?user=root");
+		// Instanción la instrucción
+		stmt = conn.createStatement();
+		// Cargo un set de resultados ejecutando la instrucción
+		rs = stmt.executeQuery(text);
+		while(rs.next())
+		{		
+			cliente.add(new Cliente(rs.getInt("cod_cliente"),rs.getString("nombre"),rs.getString("apellido"),
+					rs.getString("direccion"),rs.getInt("telefono")));
+		}
+		// Cuando terminé, siempre cierro la conexión
+		conn.close();
+		return cliente;
+		} catch(SQLException ex){System.out.println(ex);}
+		return new Vector<Cliente>();	
+	}
+	public static Vector<Mercaderia> MercaderiaQuery(String text) throws InstantiationException, IllegalAccessException, ClassNotFoundException
+	{
+		try {
+			Vector<Mercaderia> mercaderias = new Vector<Mercaderia>();
+			// Creo una nueva instancia de driver
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			// Obtengo la conexión
+			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1/phpmyadmin?user=root");
+			// Instanción la instrucción
+			stmt = conn.createStatement();
+			// Cargo un set de resultados ejecutando la instrucción
+			rs = stmt.executeQuery(text);
+			while(rs.next())
+			{
+				mercaderias.add(new Mercaderia(rs.getInt("cod_mercaderia"),rs.getString("nombre"),rs.getString("descripcion"),rs.getFloat("precio")
+						,rs.getInt("stock")));
+			}
+			// Cuando terminé, siempre cierro la conexión
+			conn.close();
+			return mercaderias;
+			} catch(SQLException ex){System.out.println(ex);}
+			return new Vector<Mercaderia>();
+	}
+	
+	public static Vector<Cobro> CobroQuery(String text) throws InstantiationException, IllegalAccessException, ClassNotFoundException
+	{
+		try {
+			Vector<Cobro> cobros = new Vector<Cobro>();
+			// Creo una nueva instancia de driver
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			// Obtengo la conexión
+			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1/phpmyadmin?user=root");
+			// Instanción la instrucción
+			stmt = conn.createStatement();
+			// Cargo un set de resultados ejecutando la instrucción
+			rs = stmt.executeQuery(text);
+			while(rs.next())
+			{
+				cobros.add(new Cobro(rs.getInt("cod_cobro"),rs.getFloat("precio")));
+			}
+			// Cuando terminé, siempre cierro la conexión
+			conn.close();
+			return cobros;
+			} catch(SQLException ex){System.out.println(ex);}
+			return new Vector<Cobro>();
+	}
+	
+	public static Vector<Pago> PagoQuery(String text) throws InstantiationException, IllegalAccessException, ClassNotFoundException
+	{
+		try {
+			Vector<Pago> pagos = new Vector<Pago>();
+			// Creo una nueva instancia de driver
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			// Obtengo la conexión
+			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1/phpmyadmin?user=root");
+			// Instanción la instrucción
+			stmt = conn.createStatement();
+			// Cargo un set de resultados ejecutando la instrucción
+			rs = stmt.executeQuery(text);
+			while(rs.next())
+			{
+				pagos.add(new Pago(rs.getInt("cod_pago"),rs.getInt("cod_mercaderia"),rs.getString("nombre_proveedor"),rs.getFloat("precio")));
+			}
+			// Cuando terminé, siempre cierro la conexión
+			conn.close();
+			return pagos;
+			} catch(SQLException ex){System.out.println(ex);}
+			return new Vector<Pago>();
+	}
+	
+	public static Vector<Venta> VentaQuery(String text) throws InstantiationException, IllegalAccessException, ClassNotFoundException
+	{
+		try {
+			Vector<Venta> ventas = new Vector<Venta>();
+			// Creo una nueva instancia de driver
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			// Obtengo la conexión
+			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1/phpmyadmin?user=root");
+			// Instanción la instrucción
+			stmt = conn.createStatement();
+			// Cargo un set de resultados ejecutando la instrucción
+			rs = stmt.executeQuery(text);
+			while(rs.next())
+			{
+				ventas.add(new Venta(rs.getInt("cod_venta"),rs.getInt("cod_cliente"),rs.getString("fecha")
+						,rs.getInt("cod_mercaderia"),rs.getInt("cantidad"),rs.getInt("precio"),rs.getInt("cod_cobro")));
+			}
+			// Cuando terminé, siempre cierro la conexión
+			conn.close();
+			return ventas;
+			} catch(SQLException ex){System.out.println(ex);}
+			return new Vector<Venta>();
+	}
+}

@@ -1,0 +1,22 @@
+package GestionarCliente;
+
+public class AgregarCliente 
+{
+	private String nombre;
+	private String apellido;
+	private String direccion;
+	private int telefono;
+	
+	public AgregarCliente(String nombre, String apellido, String direccion, int telefono)
+	{
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.direccion = direccion;
+		this.telefono = telefono;
+	}
+	
+	public void Agregar()
+	{
+		
+	}
+}

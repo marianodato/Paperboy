@@ -1,0 +1,106 @@
+package Clases;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.Vector;
+
+import General.Main;
+import Gestion.GestionarCaja;
+import Gestion.GestionarMercaderias;
+
+public class Venta 
+{
+	private int codigo;
+	private int cod_cliente;
+	private int cod_cobro;
+	private String fecha;
+	private int cod_mercaderia;
+	private int cantidad;
+	
+	public Venta(int codigo, int cod_cliente, String fecha,int cod_mercaderia, int cantidad) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+		super();
+		this.codigo = codigo;
+		this.cod_cliente = cod_cliente;
+		this.fecha = fecha;
+		this.cod_mercaderia = cod_mercaderia;
+		this.cantidad = cantidad;
+		
+		cod_cobro = -1;
+		for(int i=0;true;i++)
+		{
+			for(int j=0;j<GestionarCaja.cobros.size();j++)
+			{
+				if(GestionarCaja.cobros.get(j).getCodigo() == i) break;
+				else if(j+1 == GestionarCaja.cobros.size()) cod_cobro = i;
+			}
+			if(cod_cobro != -1) break;
+		}
+		Vector<Mercaderia> merca = GestionarMercaderias.BuscarMercaderia(Integer.toString(cod_mercaderia),"cod_mercaderia");
+		merca.get(0).setStock(cantidad);
+		Cobro cobro = new Cobro(cod_cobro,merca.get(0).getPrecio()*cantidad);
+		if(!Main.connection)GestionarCaja.AgregarCobro(cobro);
+		else GestionarCaja.Backup(cobro);
+		GestionarCaja.cobros.add(cobro);	
+	}
+	
+	public Venta(int codigo, int cod_cliente, String fecha,
+			int cod_mercaderia, int cantidad, int cod_cob) {
+		super();
+		this.codigo = codigo;
+		this.cod_cliente = cod_cliente;
+		this.cod_cobro = cod_cob;
+		this.fecha = fecha;
+		this.cod_mercaderia = cod_mercaderia;
+		this.cantidad = cantidad;
+	}
+
+	public int getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+
+	public int getCod_cliente() {
+		return cod_cliente;
+	}
+
+	public void setCod_cliente(int cod_cliente) {
+		this.cod_cliente = cod_cliente;
+	}
+
+	public int getCod_cobro() {
+		return cod_cobro;
+	}
+
+	public void setCod_cobro(int cod_cobro) {
+		this.cod_cobro = cod_cobro;
+	}
+
+	public String getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+
+	public int getCod_mercaderia() {
+		return cod_mercaderia;
+	}
+
+	public void setCod_mercaderia(int cod_mercaderia) {
+		this.cod_mercaderia = cod_mercaderia;
+	}
+
+	public int getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
+	}
+}

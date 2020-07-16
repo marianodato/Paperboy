@@ -1,0 +1,26 @@
+package General;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import java.util.Vector;
+
+import com.mysql.jdbc.*;
+
+public class BaseDatos 
+{
+	protected static Connection conn;
+	static Statement stmt;
+	static ResultSet rs;
+	
+	public void BaseDatos()
+	{
+		// Creo una conexion
+		Connection conn = null;
+		// Creo una instruccion
+		Statement stmt = null;
+		// Creo un set de resultados
+		ResultSet rs = null;
+	}
+}
